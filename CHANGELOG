@@ -437,3 +437,5 @@ Release 0.8 - 2013-07-25
   MAHOUT-1126: Filter out bad META-INF files in job packaging (Pat Ferrel, gsingers)
 
   MAHOUT-1211: Change deprecated Closeables.closeQuietly calls (smarthi, gsingers, srowen, dlyubimov)
+
+
