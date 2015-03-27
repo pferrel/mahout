@@ -130,7 +130,7 @@ public final class SSVDHelper {
       }
 
       FileStatus firstSeqFile;
-      if (fstats[0].isDirectory()) {
+      if (fstats[0].isDir()) {
         firstSeqFile = fs.listStatus(fstats[0].getPath(), PathFilters.logsCRCFilter())[0];
       } else {
         firstSeqFile = fstats[0];
