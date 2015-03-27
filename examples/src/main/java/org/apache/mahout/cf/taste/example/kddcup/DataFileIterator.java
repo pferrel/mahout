@@ -54,7 +54,7 @@ public final class DataFileIterator
   private static final Logger log = LoggerFactory.getLogger(DataFileIterator.class);
 
   public DataFileIterator(File dataFile) throws IOException {
-    if (dataFile == null || dataFile.isDirectory() || !dataFile.exists()) {
+    if (dataFile == null || dataFile.isDir() || !dataFile.exists()) {
       throw new IllegalArgumentException("Bad data file: " + dataFile);
     }
     lineIterator = new FileLineIterator(dataFile);

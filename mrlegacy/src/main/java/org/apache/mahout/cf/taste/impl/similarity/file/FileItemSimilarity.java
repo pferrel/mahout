@@ -81,7 +81,7 @@ public class FileItemSimilarity implements ItemSimilarity {
    */
   public FileItemSimilarity(File dataFile, long minReloadIntervalMS) {
     Preconditions.checkArgument(dataFile != null, "dataFile is null");
-    Preconditions.checkArgument(dataFile.exists() && !dataFile.isDirectory(),
+    Preconditions.checkArgument(dataFile.exists() && !dataFile.isDir(),
       "dataFile is missing or a directory: %s", dataFile);
 
     log.info("Creating FileItemSimilarity for file {}", dataFile);

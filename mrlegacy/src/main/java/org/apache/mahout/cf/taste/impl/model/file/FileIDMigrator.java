@@ -63,7 +63,7 @@ public class FileIDMigrator extends AbstractIDMigrator {
   public FileIDMigrator(File dataFile, long minReloadIntervalMS) throws FileNotFoundException {
     longToString = new FastByIDMap<>(100);
     this.dataFile = Preconditions.checkNotNull(dataFile);
-    if (!dataFile.exists() || dataFile.isDirectory()) {
+    if (!dataFile.exists() || dataFile.isDir()) {
       throw new FileNotFoundException(dataFile.toString());
     }
 

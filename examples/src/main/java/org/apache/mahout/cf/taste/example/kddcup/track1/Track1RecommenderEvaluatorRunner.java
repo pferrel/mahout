@@ -40,7 +40,7 @@ public final class Track1RecommenderEvaluatorRunner {
     if (dataFileDirectory == null) {
       throw new IllegalArgumentException("No data directory");
     }
-    if (!dataFileDirectory.exists() || !dataFileDirectory.isDirectory()) {
+    if (!dataFileDirectory.exists() || !dataFileDirectory.isDir()) {
       throw new IllegalArgumentException("Bad data file directory: " + dataFileDirectory);
     }
     Track1RecommenderEvaluator evaluator = new Track1RecommenderEvaluator(dataFileDirectory);

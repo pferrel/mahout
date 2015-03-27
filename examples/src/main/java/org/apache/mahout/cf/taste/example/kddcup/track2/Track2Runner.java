@@ -52,7 +52,7 @@ public final class Track2Runner {
   public static void main(String[] args) throws Exception {
 
     File dataFileDirectory = new File(args[0]);
-    if (!dataFileDirectory.exists() || !dataFileDirectory.isDirectory()) {
+    if (!dataFileDirectory.exists() || !dataFileDirectory.isDir()) {
       throw new IllegalArgumentException("Bad data file directory: " + dataFileDirectory);
     }
 

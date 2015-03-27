@@ -130,7 +130,7 @@ public final class Driver {
         File dictOut = new File(cmdLine.getValue(dictOutOpt).toString());
         boolean jsonDictonary = cmdLine.hasOption(jsonDictonaryOpt);
         ARFFModel model = new MapBackedARFFModel();
-        if (input.exists() && input.isDirectory()) {
+        if (input.exists() && input.isDir()) {
           File[] files = input.listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File file, String name) {

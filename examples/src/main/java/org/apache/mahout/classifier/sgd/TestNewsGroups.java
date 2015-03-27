@@ -74,7 +74,7 @@ public final class TestNewsGroups {
 
     List<File> files = Lists.newArrayList();
     for (File newsgroup : base.listFiles()) {
-      if (newsgroup.isDirectory()) {
+      if (newsgroup.isDir()) {
         newsGroups.intern(newsgroup.getName());
         files.addAll(Arrays.asList(newsgroup.listFiles()));
       }

@@ -79,7 +79,7 @@ public final class Driver {
   public void dumpVectors() throws IOException {
 
     File file = new File(luceneDir);
-    Preconditions.checkArgument(file.isDirectory(),
+    Preconditions.checkArgument(file.isDir(),
                                 "Lucene directory: " + file.getAbsolutePath()
                                     + " does not exist or is not a directory");
     Preconditions.checkArgument(maxDocs >= 0, "maxDocs must be >= 0");

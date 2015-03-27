@@ -47,7 +47,7 @@ trait MahoutSuite extends BeforeAndAfterEach with LoggerConfiguration with Match
 
   /** Delete directory no symlink checking and exceptions are not caught */
   private def deleteDirectory(path: File): Unit = {
-    if (path.isDirectory)
+    if (path.isDir)
       for (files <- path.listFiles) deleteDirectory(files)
     path.delete
   }

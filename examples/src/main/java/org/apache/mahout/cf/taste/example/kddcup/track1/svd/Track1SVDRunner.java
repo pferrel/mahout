@@ -59,7 +59,7 @@ public final class Track1SVDRunner {
     }
 
     File dataFileDirectory = new File(args[0]);
-    if (!dataFileDirectory.exists() || !dataFileDirectory.isDirectory()) {
+    if (!dataFileDirectory.exists() || !dataFileDirectory.isDir()) {
       throw new IllegalArgumentException("Bad data file directory: " + dataFileDirectory);
     }
 

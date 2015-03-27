@@ -84,7 +84,7 @@ public final class SequenceFilesFromMailArchives extends AbstractJob {
     ChunkedWriter writer = new ChunkedWriter(getConf(), options.getChunkSize(), new Path(options.getOutputDir()));
     MailProcessor processor = new MailProcessor(options, options.getPrefix(), writer);
     try {
-      if (options.getInput().isDirectory()) {
+      if (options.getInput().isDir()) {
         PrefixAdditionDirectoryWalker walker = new PrefixAdditionDirectoryWalker(processor, writer);
         walker.walk(options.getInput());
         log.info("Parsed {} messages from {}", walker.getMessageCount(), options.getInput().getAbsolutePath());

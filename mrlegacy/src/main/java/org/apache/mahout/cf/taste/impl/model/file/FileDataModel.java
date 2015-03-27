@@ -177,7 +177,7 @@ public class FileDataModel extends AbstractDataModel {
     throws IOException {
 
     this.dataFile = Preconditions.checkNotNull(dataFile.getAbsoluteFile());
-    if (!dataFile.exists() || dataFile.isDirectory()) {
+    if (!dataFile.exists() || dataFile.isDir()) {
       throw new FileNotFoundException(dataFile.toString());
     }
     Preconditions.checkArgument(dataFile.length() > 0L, "dataFile is empty");
@@ -320,7 +320,7 @@ public class FileDataModel extends AbstractDataModel {
     FileFilter onlyFiles = new FileFilter() {
       @Override
       public boolean accept(File file) {
-        return !file.isDirectory();
+        return !file.isDir();
       }
     };
     for (File updateFile : parentDir.listFiles(onlyFiles)) {

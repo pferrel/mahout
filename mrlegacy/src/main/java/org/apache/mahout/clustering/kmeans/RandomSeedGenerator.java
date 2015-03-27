@@ -78,7 +78,7 @@ public final class RandomSeedGenerator {
     if (newFile) {
       Path inputPathPattern;
 
-      if (fs.getFileStatus(input).isDirectory()) {
+      if (fs.getFileStatus(input).isDir()) {
         inputPathPattern = new Path(input, "*");
       } else {
         inputPathPattern = input;
@@ -95,7 +95,7 @@ public final class RandomSeedGenerator {
 
       int index = 0;
       for (FileStatus fileStatus : inputFiles) {
-        if (fileStatus.isDirectory()) {
+        if (fileStatus.isDir()) {
           continue;
         }
         for (Pair<Writable,VectorWritable> record
