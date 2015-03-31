@@ -355,7 +355,7 @@ public final class HadoopUtil {
     boolean containsFiles = false;
     List<String> directoriesList = Lists.newArrayList();
     for (FileStatus childFileStatus : fs.listStatus(fileStatus.getPath())) {
-      if (childFileStatus.isDirectory()) {
+      if (childFileStatus.isDir()) {
         String subDirectoryList = buildDirList(fs, childFileStatus);
         directoriesList.add(subDirectoryList);
       } else {
@@ -381,7 +381,7 @@ public final class HadoopUtil {
     boolean containsFiles = false;
     List<String> directoriesList = Lists.newArrayList();
     for (FileStatus childFileStatus : fs.listStatus(fileStatus.getPath(), pathFilter)) {
-      if (childFileStatus.isDirectory()) {
+      if (childFileStatus.isDir()) {
         String subDirectoryList = buildDirList(fs, childFileStatus);
         directoriesList.add(subDirectoryList);
       } else {

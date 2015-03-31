@@ -78,7 +78,7 @@ public final class RandomSeedGenerator {
     if (newFile) {
       Path inputPathPattern;
 
-      if (fs.getFileStatus(input).isDirectory()) {
+      if (fs.getFileStatus(input).isDir()) {
         inputPathPattern = new Path(input, "*");
       } else {
         inputPathPattern = input;
@@ -95,32 +95,31 @@ public final class RandomSeedGenerator {
 
       int index = 0;
       for (FileStatus fileStatus : inputFiles) {
-        if (fileStatus.isDirectory()) {
-          continue;
-        }
-        for (Pair<Writable,VectorWritable> record
-             : new SequenceFileIterable<Writable,VectorWritable>(fileStatus.getPath(), true, conf)) {
-          Writable key = record.getFirst();
-          VectorWritable value = record.getSecond();
-          Kluster newCluster = new Kluster(value.get(), nextClusterId++, measure);
-          newCluster.observe(value.get(), 1);
-          Text newText = new Text(key.toString());
-          int currentSize = chosenTexts.size();
-          if (currentSize < k) {
-            chosenTexts.add(newText);
-            ClusterWritable clusterWritable = new ClusterWritable();
-            clusterWritable.setValue(newCluster);
-            chosenClusters.add(clusterWritable);
-          } else {
-            int j = random.nextInt(index);
-            if (j < k) {
-              chosenTexts.set(j, newText);
+        if (!fileStatus.isDir()) {
+          for (Pair<Writable, VectorWritable> record
+              : new SequenceFileIterable<Writable, VectorWritable>(fileStatus.getPath(), true, conf)) {
+            Writable key = record.getFirst();
+            VectorWritable value = record.getSecond();
+            Kluster newCluster = new Kluster(value.get(), nextClusterId++, measure);
+            newCluster.observe(value.get(), 1);
+            Text newText = new Text(key.toString());
+            int currentSize = chosenTexts.size();
+            if (currentSize < k) {
+              chosenTexts.add(newText);
               ClusterWritable clusterWritable = new ClusterWritable();
               clusterWritable.setValue(newCluster);
-              chosenClusters.set(j, clusterWritable);
+              chosenClusters.add(clusterWritable);
+            } else {
+              int j = random.nextInt(index);
+              if (j < k) {
+                chosenTexts.set(j, newText);
+                ClusterWritable clusterWritable = new ClusterWritable();
+                clusterWritable.setValue(newCluster);
+                chosenClusters.set(j, clusterWritable);
+              }
             }
+            index++;
           }
-          index++;
         }
       }
 
