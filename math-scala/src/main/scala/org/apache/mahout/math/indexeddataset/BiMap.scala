@@ -27,12 +27,12 @@ import scala.collection.immutable.HashMap
 class BiMap[K, V] (
     private val m: Map[K, V],
     // if this is serialized we allow i to be discarded and recalculated when deserialized
-    @transient private var i: Option[BiMap[V, K]] = None
-  ) extends Serializable {
+    private var i: Option[BiMap[V, K]] = None)
+  extends Serializable {
 
   // NOTE: make inverse's inverse point back to current BiMap
   // if this is serialized we allow inverse to be discarded and recalculated when deserialized
-  @transient lazy val inverse: BiMap[V, K] = {
+  lazy val inverse: BiMap[V, K] = {
     if( i == null.asInstanceOf[Option[BiMap[V, K]]] )
       i = None
     i.getOrElse {
@@ -83,7 +83,7 @@ object BiMap {
 /** BiDictionary is a specialized BiMap that has non-negative Ints as values for use as DRM keys */
 class BiDictionary (
     private val m: Map[String, Int],
-    @transient private val i: Option[BiMap[Int, String]] = None )
+    private val i: Option[BiMap[Int, String]] = None )
   extends BiMap[String, Int](m, i) {
 
   /**
